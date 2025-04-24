@@ -72,19 +72,19 @@ O servidor é configurado em `config/server.js` e inclui:
 
 ### Filhotes
 
-- `GET /api/filhotes` - Lista todos os filhotes
-- `GET /api/filhotes/:id` - Busca um filhote específico
-- `POST /api/filhotes` - Cria um novo filhote
-- `PUT /api/filhotes/:id` - Atualiza um filhote
-- `DELETE /api/filhotes/:id` - Remove um filhote
+- `GET /filhotes` - Lista todos os filhotes
+- `GET /filhotes/:id` - Busca um filhote específico
+- `POST /filhotes` - Cria um novo filhote
+- `PUT /filhotes/:id` - Atualiza um filhote
+- `DELETE /filhotes/:id` - Remove um filhote
 
 ### Interessados
 
-- `GET /api/interessados` - Lista todos os interessados
-- `GET /api/interessados/:id` - Busca um interessado específico
-- `POST /api/interessados` - Cria um novo interessado
-- `PUT /api/interessados/:id` - Atualiza um interessado
-- `DELETE /api/interessados/:id` - Remove um interessado
+- `GET /interessados` - Lista todos os interessados
+- `GET /interessados/:id` - Busca um interessado específico
+- `POST /interessados` - Cria um novo interessado
+- `PUT /interessados/:id` - Atualiza um interessado
+- `DELETE /interessados/:id` - Remove um interessado
 
 ## 🔍 Documentação do Código
 

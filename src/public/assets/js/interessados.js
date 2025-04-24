@@ -4,7 +4,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    const API_URL = '/api/interessados';
+    const API_URL = '/interessados';
     const modal = new bootstrap.Modal(document.getElementById('interessadoModal'));
     const form = document.getElementById('interessadoForm');
     const salvarBtn = document.getElementById('salvarInteressado');

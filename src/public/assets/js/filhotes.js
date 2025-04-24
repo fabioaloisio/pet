@@ -9,7 +9,7 @@ let filhoteForm;
 let filhoteModal;
 
 document.addEventListener('DOMContentLoaded', () => {
-    const API_URL = 'http://localhost:3000/api/filhotes';
+    const API_URL = 'http://localhost:3000/filhotes';
     const modal = new bootstrap.Modal(document.getElementById('filhoteModal'));
     const form = document.getElementById('filhoteForm');
     const salvarBtn = document.getElementById('salvarFilhote');

@@ -8,35 +8,35 @@ const router = express.Router();
 const InteressadoController = require('../controllers/InteressadoController');
 
 /**
- * @route GET /api/interessados
+ * @route GET /interessados
  * @description Lista todos os interessados
  * @access Public
  */
 router.get('/', InteressadoController.listarTodos);
 
 /**
- * @route GET /api/interessados/:id
+ * @route GET /interessados/:id
  * @description Busca um interessado pelo ID
  * @access Public
  */
 router.get('/:id', InteressadoController.buscarPorId);
 
 /**
- * @route POST /api/interessados
+ * @route POST /interessados
  * @description Cria um novo interessado
  * @access Public
  */
 router.post('/', InteressadoController.criar);
 
 /**
- * @route PUT /api/interessados/:id
+ * @route PUT /interessados/:id
  * @description Atualiza um interessado existente
  * @access Public
  */
 router.put('/:id', InteressadoController.atualizar);
 
 /**
- * @route DELETE /api/interessados/:id
+ * @route DELETE /interessados/:id
  * @description Remove um interessado
  * @access Public
  */

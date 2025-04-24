@@ -13,7 +13,7 @@ export class InteressadoService {
      * @private
      * @type {string}
      */
-    static #baseUrl = '/api/interessados';
+    static #baseUrl = '/interessados';
 
     /**
      * Lista todos os interessados cadastrados

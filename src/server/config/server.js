@@ -32,8 +32,8 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, '../../public')));
 
 // Rotas da API
-app.use('/api/filhotes', filhotesRoutes);
-app.use('/api/interessados', interessadosRoutes);
+app.use('/filhotes', filhotesRoutes);
+app.use('/interessados', interessadosRoutes);
 
 // Rotas para páginas
 app.get('/', (req, res) => {
