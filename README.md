@@ -1,109 +1,80 @@
-# Sistema de Fila de Espera para Filhotes
+# Sistema de Gerenciamento de Filhotes
 
-Este é um sistema de cadastro de fila de espera para filhotes em pet shop, desenvolvido com Node.js, Express e MySQL.
+Sistema web para gerenciamento de filhotes e interessados em adoção.
 
-## Requisitos
+## 🚀 Tecnologias Utilizadas
 
-- Node.js (versão 14 ou superior)
-- MySQL (versão 5.7 ou superior)
-- NPM ou Yarn
+- **Backend**:
+  - Node.js
+  - Express.js
+  - MySQL
+  - JSDoc para documentação
 
-## Instalação
+- **Frontend**:
+  - HTML5
+  - CSS3 (Bootstrap 5)
+  - JavaScript (ES6+)
+  - Bootstrap Icons
 
-1. Clone o repositório
+## 📁 Estrutura do Projeto
+
+```
+pet/
+├── src/
+│   ├── public/              # Frontend
+│   │   ├── assets/         # Recursos estáticos
+│   │   │   ├── css/       # Estilos CSS
+│   │   │   └── js/        # Scripts JavaScript
+│   │   ├── pages/         # Páginas HTML
+│   │   └── index.html     # Página inicial
+│   │
+│   └── server/            # Backend
+│       ├── config/        # Configurações
+│       ├── controllers/   # Controladores
+│       ├── models/        # Modelos
+│       ├── routes/        # Rotas
+│       ├── database/      # Configuração do banco
+│       └── index.js       # Ponto de entrada
+│
+├── package.json
+└── README.md
+```
+
+## 🛠️ Instalação
+
+1. Clone o repositório:
+```bash
+git clone https://github.com/fabioaloisio/pet.git
+cd pet
+```
+
 2. Instale as dependências:
 ```bash
 npm install
 ```
 
-3. Configure as variáveis de ambiente:
-Execute
+3. Configure o banco de dados:
+- Crie um banco de dados MySQL
+- Configure as variáveis de ambiente em .env
 ```bash
-cp env.example .env
+cp .env.example .env
 ```
 
-Com isso, você criará um arquivo `.env` na raiz do projeto com as seguintes variáveis:
-```
-DB_HOST=localhost
-DB_USER=seu_usuario
-DB_PASSWORD=sua_senha
-DB_NAME=pet_shop
-PORT=3000
-```
-
-4. Execute o script SQL para criar o banco de dados e as tabelas:
+4. Inicie o servidor:
 ```bash
-mysql -u seu_usuario -p < src/database/schema.sql
+node src/server/index.js 
+# ou npm start
 ```
 
-5. Inicie o servidor:
-```bash
-npm start
-```
+5. Acesse a aplicação:
+- Frontend: http://localhost:3000
+- API: http://localhost:3000/api
 
-Para desenvolvimento, use:
-```bash
-npm run dev
-```
+## 📚 Documentação
 
-## Endpoints da API
+- [Documentação do Backend](src/server/README.md)
+- [Documentação do Frontend](src/public/README.md)
 
-### Interessados
+## 📝 Licença
 
-- `GET /interessados` - Lista todos os interessados
-- `GET /interessados/:id` - Busca um interessado pelo ID
-- `POST /interessados` - Cria um novo interessado
-- `PUT /interessados/:id` - Atualiza um interessado
-- `DELETE /interessados/:id` - Remove um interessado
-
-### Filhotes
-
-- `GET /filhotes` - Lista todos os filhotes
-- `GET /filhotes/:id` - Busca um filhote pelo ID
-- `POST /filhotes` - Cria um novo filhote
-- `PUT /filhotes/:id` - Atualiza um filhote
-- `DELETE /filhotes/:id` - Remove um filhote
-
-## Estrutura do Projeto
-
-```
-src/
-  ├── config/
-  │   └── database.js
-  ├── controllers/
-  │   ├── InteressadoController.js
-  │   └── FilhoteController.js
-  ├── models/
-  │   ├── Interessado.js
-  │   └── Filhote.js
-  ├── routes/
-  │   ├── interessados.js
-  │   └── filhotes.js
-  ├── database/
-  │   └── schema.sql
-  └── server.js
-```
-
-## Exemplos de Uso
-
-### Criar um novo interessado
-```bash
-curl -X POST http://localhost:3000/interessados \
-  -H "Content-Type: application/json" \
-  -d '{
-    "cpf": "123.456.789-00",
-    "nome": "João Silva",
-    "telefone": "(11) 99999-9999",
-    "email": "joao@email.com"
-  }'
-```
-
-### Criar um novo filhote
-```bash
-curl -X POST http://localhost:3000/filhotes \
-  -H "Content-Type: application/json" \
-  -d '{
-    "especie": "Cachorro",
-    "raca": "Labrador"
-  }'
-``` 
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes. 

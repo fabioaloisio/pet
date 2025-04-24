@@ -11,13 +11,13 @@ yarn-error.log
 .env.test.local
 .env.production.local
 
+# Arquivos de build
+/dist
+/build
+
 # Logs
 logs
 *.log
-
-# Diretórios de build
-dist/
-build/
 
 # Arquivos do sistema operacional
 .DS_Store
@@ -28,6 +28,24 @@ Thumbs.db
 .vscode/
 *.swp
 *.swo
+*.swn
+*.bak
+
+# Arquivos de teste
+/coverage
+
+# Arquivos temporários
+/tmp
+/temp
+
+# Outros
+*.pid
+*.seed
+*.pid.lock
+
+# Diretórios de build
+dist/
+build/
 
 # Arquivos de cache
 .npm

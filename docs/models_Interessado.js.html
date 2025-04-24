@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: models/Interessado.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: models/Interessado.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @fileoverview Modelo de dados para os interessados
+ * @module models/Interessado
+ */
+
+const db = require('../config/database');
+
+/**
+ * Classe que representa o modelo de dados para os interessados
+ * @class
+ */
+class Interessado {
+    /**
+     * Cria uma nova instância do modelo Interessado
+     * @param {Object} data - Dados do interessado
+     * @param {string} data.nome - Nome do interessado
+     * @param {string} data.email - Email do interessado
+     * @param {string} data.telefone - Telefone do interessado
+     * @param {string} data.cpf - CPF do interessado
+     */
+    constructor(data) {
+        this.id = data.id;
+        this.nome = data.nome;
+        this.email = data.email;
+        this.telefone = data.telefone;
+        this.cpf = data.cpf;
+        this.created_at = data.created_at;
+        this.updated_at = data.updated_at;
+    }
+
+    /**
+     * Busca todos os interessados cadastrados
+     * @async
+     * @static
+     * @returns {Promise&lt;Array&lt;Interessado>>} Lista de interessados
+     * @throws {Error} Erro ao buscar interessados
+     */
+    static async findAll() {
+        try {
+            const [rows] = await db.query('SELECT * FROM interessados ORDER BY nome');
+            return rows.map(row => new Interessado(row));
+        } catch (error) {
+            console.error('Erro ao buscar interessados:', error);
+            throw new Error('Erro ao buscar interessados');
+        }
+    }
+
+    /**
+     * Busca um interessado pelo ID
+     * @async
+     * @static
+     * @param {number} id - ID do interessado
+     * @returns {Promise&lt;Interessado|null>} Dados do interessado ou null se não encontrado
+     * @throws {Error} Erro ao buscar interessado
+     */
+    static async findById(id) {
+        try {
+            const [rows] = await db.query('SELECT * FROM interessados WHERE id = ?', [id]);
+            if (rows.length === 0) {
+                return null;
+            }
+            return new Interessado(rows[0]);
+        } catch (error) {
+            console.error('Erro ao buscar interessado:', error);
+            throw new Error('Erro ao buscar interessado');
+        }
+    }
+
+    /**
+     * Cria um novo interessado
+     * @async
+     * @static
+     * @param {Object} data - Dados do interessado
+     * @param {string} data.nome - Nome do interessado
+     * @param {string} data.email - Email do interessado
+     * @param {string} data.telefone - Telefone do interessado
+     * @param {string} data.cpf - CPF do interessado
+     * @returns {Promise&lt;Interessado>} Dados do interessado criado
+     * @throws {Error} Erro ao criar interessado
+     */
+    static async create(data) {
+        try {
+            const { nome, cpf, email, telefone } = data;
+            const [result] = await db.query(
+                'INSERT INTO interessados (nome, cpf, email, telefone) VALUES (?, ?, ?, ?)',
+                [nome, cpf, email, telefone]
+            );
+            return this.findById(result.insertId);
+        } catch (error) {
+            console.error('Erro ao criar interessado:', error);
+            throw new Error('Erro ao criar interessado');
+        }
+    }
+
+    /**
+     * Atualiza os dados de um interessado
+     * @async
+     * @static
+     * @param {number} id - ID do interessado
+     * @param {Object} data - Dados atualizados do interessado
+     * @param {string} data.nome - Nome do interessado
+     * @param {string} data.email - Email do interessado
+     * @param {string} data.telefone - Telefone do interessado
+     * @param {string} data.cpf - CPF do interessado
+     * @returns {Promise&lt;Interessado|null>} Dados do interessado atualizado ou null se não encontrado
+     * @throws {Error} Erro ao atualizar interessado
+     */
+    static async update(id, data) {
+        try {
+            const { nome, cpf, email, telefone } = data;
+            const [result] = await db.query(
+                'UPDATE interessados SET nome = ?, cpf = ?, email = ?, telefone = ? WHERE id = ?',
+                [nome, cpf, email, telefone, id]
+            );
+            
+            if (result.affectedRows === 0) {
+                return null;
+            }
+            
+            return this.findById(id);
+        } catch (error) {
+            console.error('Erro ao atualizar interessado:', error);
+            throw new Error('Erro ao atualizar interessado');
+        }
+    }
+
+    /**
+     * Remove um interessado
+     * @async
+     * @static
+     * @param {number} id - ID do interessado
+     * @returns {Promise&lt;boolean>} true se removido com sucesso, false caso contrário
+     * @throws {Error} Erro ao remover interessado
+     */
+    static async delete(id) {
+        try {
+            const [result] = await db.query('DELETE FROM interessados WHERE id = ?', [id]);
+            return result.affectedRows > 0;
+        } catch (error) {
+            console.error('Erro ao remover interessado:', error);
+            throw new Error('Erro ao remover interessado');
+        }
+    }
+}
+
+module.exports = Interessado; </code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-config_database.html">config/database</a></li><li><a href="module-config_env.html">config/env</a></li><li><a href="module-config_server.html">config/server</a></li><li><a href="module-controllers_FilhoteController.html">controllers/FilhoteController</a></li><li><a href="module-controllers_InteressadoController.html">controllers/InteressadoController</a></li><li><a href="module-models_Filhote.html">models/Filhote</a></li><li><a href="module-models_Interessado.html">models/Interessado</a></li><li><a href="module-routes_filhotes.html">routes/filhotes</a></li><li><a href="module-routes_interessados.html">routes/interessados</a></li><li><a href="module-server_index.html">server/index</a></li><li><a href="module-utils_validators.html">utils/validators</a></li></ul><h3>Classes</h3><ul><li><a href="module-controllers_FilhoteController-FilhoteController.html">FilhoteController</a></li><li><a href="module-controllers_InteressadoController-InteressadoController.html">InteressadoController</a></li><li><a href="module-models_Filhote-Filhote.html">Filhote</a></li><li><a href="module-models_Interessado-Interessado.html">Interessado</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed Apr 23 2025 21:20:56 GMT-0300 (Brasilia Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
